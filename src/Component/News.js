@@ -59,19 +59,13 @@ export class News extends Component {
                 <div className="container my-4">
                     <h2 className="text-center">Today's Top Headlines</h2>
                     <div className="row mt-5">
-                        <div className="col-md-3">
-                            <NewsItem title="News Today" description="Aaj ki taza khabar" imgUrl="https://static.toiimg.com/thumb/msid-86552833,width-1070,height-580,imgsize-34674,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg"/>
+                        {this.state.articles.map((element)=> {
+                            return <div className="col-md-4" key={element.url} >
+                            <NewsItem title={element.title.slice(0,45)} description={element.description.slice(0,88)} imgUrl={element.urlToImage} newsUrl={element.url}/>
                         </div>
-                        <div className="col-md-3">
-                            <NewsItem title="News Today" description="Aaj ki taza khabar"/>
-                        </div>
-                        <div className="col-md-3">
-                            <NewsItem title="News Today" description="Aaj ki taza khabar"/>
-                        </div>
-                        <div className="col-md-3">
-                            <NewsItem title="News Today" description="Aaj ki taza khabar"/>
-                        </div>
+                        })}
                     </div>
+                    
                     <div className="row mt-5">
                         <div className="col-md-3">
                             <NewsItem title="News Today" description="Aaj ki taza khabar"/>
