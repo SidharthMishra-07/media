@@ -33,7 +33,7 @@ export class News extends Component {
     }
     nextClick = async ()=>{
         if(this.state.page+1 > Math.ceil(this.state.totalResults/15)){
-            
+            //Disabled the next button
         }
         else{
             let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=97b12b02d71a4d1d9ba7f5e2d82b36f1&page=${this.state.page+1}&pageSize=15`;
