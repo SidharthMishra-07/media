@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem'
+import Spinner from './Spinner';
 
 export class News extends Component {
 
@@ -37,11 +38,15 @@ export class News extends Component {
         }
         else{
             let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=97b12b02d71a4d1d9ba7f5e2d82b36f1&page=${this.state.page+1}&pageSize=15`;
+            this.setState({
+                loading: true     //Loader will come when data is not loaded yet
+            })
             let data = await fetch(url)
             let parsedData = await data.json();
             this.setState({
                 articles: parsedData.articles,
                 page: this.state.page+1,
+                loading: false      // Goes to false after loading the content
             })
         }
     }
@@ -51,6 +56,7 @@ export class News extends Component {
             <>
                 <div className="container my-4">
                     <h2 className="text-center">Today's Top Headlines</h2>
+                    {this.state.loading && <Spinner/>}  
                     <div className="row mt-5">
                         {this.state.articles.map((element)=> {
                             return <div className="col-md-4 mt-4" key={element.url} >
