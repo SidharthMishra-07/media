@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem'
 import Spinner from './Spinner';
+import PropTypes from 'prop-types'
 
 export class News extends Component {
     static defaultProps = {
-        
+        category:'Health',
+    }
+    static propTypes = {
+        category: PropTypes.string,
     }
 
     constructor(){
@@ -17,7 +21,7 @@ export class News extends Component {
         }
     }
     async componentDidMount(){   //Its runs after the render function
-        let url = "https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=97b12b02d71a4d1d9ba7f5e2d82b36f1&page=1&pageSize=15";
+        let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=97b12b02d71a4d1d9ba7f5e2d82b36f1&page=1&pageSize=15`;
         this.setState({
             loading: true     //Loader will come when data is not loaded yet
         })
