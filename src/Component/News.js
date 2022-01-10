@@ -3,6 +3,9 @@ import NewsItem from './NewsItem'
 import Spinner from './Spinner';
 
 export class News extends Component {
+    static defaultProps = {
+        
+    }
 
     constructor(){
         super();
@@ -14,7 +17,7 @@ export class News extends Component {
         }
     }
     async componentDidMount(){   //Its runs after the render function
-        let url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=97b12b02d71a4d1d9ba7f5e2d82b36f1&page=1&pageSize=15";
+        let url = "https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=97b12b02d71a4d1d9ba7f5e2d82b36f1&page=1&pageSize=15";
         this.setState({
             loading: true     //Loader will come when data is not loaded yet
         })
@@ -28,7 +31,7 @@ export class News extends Component {
     }
 
     prevClick = async ()=>{
-        let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=97b12b02d71a4d1d9ba7f5e2d82b36f1&page=${this.state.page-1}&pageSize=15`;
+        let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=97b12b02d71a4d1d9ba7f5e2d82b36f1&page=${this.state.page-1}&pageSize=15`;
         let data = await fetch(url)
         let parsedData = await data.json();
         this.setState({
@@ -41,7 +44,7 @@ export class News extends Component {
             //Disabled the next button
         }
         else{
-            let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=97b12b02d71a4d1d9ba7f5e2d82b36f1&page=${this.state.page+1}&pageSize=15`;
+            let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=97b12b02d71a4d1d9ba7f5e2d82b36f1&page=${this.state.page+1}&pageSize=15`;
             this.setState({
                 loading: true     //Loader will come when data is not loaded yet
             })
