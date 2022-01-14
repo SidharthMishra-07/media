@@ -20,8 +20,8 @@ export class News extends Component {
             page: 1
         }
     }
-    async componentDidMount(){   //Its runs after the render function
-        let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=97b12b02d71a4d1d9ba7f5e2d82b36f1&page=1&pageSize=15`;
+    async updateNews(){
+        const url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=97b12b02d71a4d1d9ba7f5e2d82b36f1&page=${this.state.page}&pageSize=15`;
         this.setState({
             loading: true     //Loader will come when data is not loaded yet
         })
@@ -34,39 +34,24 @@ export class News extends Component {
         })
     }
 
+    async componentDidMount(){   //Its runs after the render function
+        this.updateNews();
+    }
+
     prevClick = async ()=>{
-        let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=97b12b02d71a4d1d9ba7f5e2d82b36f1&page=${this.state.page-1}&pageSize=15`;
-        let data = await fetch(url)
-        let parsedData = await data.json();
-        this.setState({
-            articles: parsedData.articles,
-            page: this.state.page-1,
-        })
+        this.setState({page: this.state.page - 1})
+        this.updateNews();
     }
     nextClick = async ()=>{
-        if(this.state.page+1 > Math.ceil(this.state.totalResults/15)){
-            //Disabled the next button
-        }
-        else{
-            let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=97b12b02d71a4d1d9ba7f5e2d82b36f1&page=${this.state.page+1}&pageSize=15`;
-            this.setState({
-                loading: true     //Loader will come when data is not loaded yet
-            })
-            let data = await fetch(url)
-            let parsedData = await data.json();
-            this.setState({
-                articles: parsedData.articles,
-                page: this.state.page+1,
-                loading: false      // Goes to false after loading the content
-            })
-        }
+        this.setState({page: this.state.page + 1})
+        this.updateNews();
     }
 
     render() {
         return (
             <>
                 <div className="container my-4">
-                    <h2 className="text-center"> Today's Top Headlines </h2>
+                    <h2 className="text-center">Today's Top Headlines</h2>
                     <div className="row mt-5">
                         {!this.state.loading && this.state.articles.map((element)=> {
                             return <div className="col-md-4 mt-4" key={element.url} >
