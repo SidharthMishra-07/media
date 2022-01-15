@@ -11,14 +11,19 @@ export class News extends Component {
         category: PropTypes.string,
     }
 
-    constructor(){
-        super();
+    capitalizeFirstLetter = (string)=>{
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    constructor(props){
+        super(props);
         //This is same as using const[text, setText] = useState(''); in function based component
         this.state = {
             articles: [],
             loading: false,
             page: 1
         }
+        document.title = `${this.capitalizeFirstLetter(this.props.category)} - NewsMedia`
     }
     async updateNews(){
         const url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=97b12b02d71a4d1d9ba7f5e2d82b36f1&page=${this.state.page}&pageSize=15`;
