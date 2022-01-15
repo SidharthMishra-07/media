@@ -10,6 +10,7 @@ import {
 import LoadingBar from 'react-top-loading-bar'
 
 export class App extends Component {
+  apiKey = process.env.REACT_APP_NEWS_API
 
   state = {
     progress:0
@@ -28,12 +29,12 @@ export class App extends Component {
         progress={this.state.progress}
       />
         <Switch>
-          <Route exact path="/"><News setProgress = {this.setProgress} key="general" category="general"/></Route>
-          <Route exact path="/business"><News setProgress = {this.setProgress} key="business" category="business"/></Route>
-          <Route exact path="/health"><News setProgress = {this.setProgress} key="health" category="health"/></Route>
-          <Route exact path="/science"><News setProgress = {this.setProgress} key="science" category="science"/></Route>
-          <Route exact path="/sports"><News setProgress = {this.setProgress} key="sports" category="sports"/></Route>
-          <Route exact path="/technology"><News setProgress = {this.setProgress} key="technology" category="technology"/></Route>
+          <Route exact path="/"><News setProgress = {this.setProgress} apiKey={this.apiKey} key="general" category="general"/></Route>
+          <Route exact path="/business"><News setProgress = {this.setProgress} apiKey={this.apiKey} key="business" category="business"/></Route>
+          <Route exact path="/health"><News setProgress = {this.setProgress} apiKey={this.apiKey} key="health" category="health"/></Route>
+          <Route exact path="/science"><News setProgress = {this.setProgress} apiKey={this.apiKey} key="science" category="science"/></Route>
+          <Route exact path="/sports"><News setProgress = {this.setProgress} apiKey={this.apiKey} key="sports" category="sports"/></Route>
+          <Route exact path="/technology"><News setProgress = {this.setProgress} apiKey={this.apiKey} key="technology" category="technology"/></Route>
         </Switch> 
       </Router>
       </>
