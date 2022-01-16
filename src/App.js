@@ -10,7 +10,8 @@ import {
 import LoadingBar from 'react-top-loading-bar'
 
 export class App extends Component {
-  apiKey = process.env.REACT_APP_NEWS_API
+
+  apiKey = process.env.REACT_APP_NEWS_API   //Hiding the API Key in the local env
 
   state = {
     progress:0

@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import {Link} from "react-router-dom";
 
-export class MediaNavbar extends Component {
-
-    render() {
+const MediaNavbar = () =>{
+    
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container-fluid">
@@ -40,7 +39,6 @@ export class MediaNavbar extends Component {
             </nav>
 
         )
-    }
 }
 
 export default MediaNavbar
