@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-const NewsItem = ()=>{
+const NewsItem = (props)=>{
 
-        let {title,description,imgUrl,newsUrl,author,date} = this.props;
+        let {title,description,imgUrl,newsUrl,author,date} = props;
         return (
             <>
                 <div className="card" style={{boxShadow:"5px 5px 10px #ced7ef"}}>
