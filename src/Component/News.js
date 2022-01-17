@@ -18,7 +18,7 @@ const News = (props)=>{
 
 
     const updateNews = async()=> {
-        props.setProgress(30);
+        props.setProgress(35);
         const url = `https://newsapi.org/v2/top-headlines?country=in&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=15`;
         
         setloading(true)    //Loader will come when data is not loaded yet  
